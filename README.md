@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/guillaumegenthial/tf_metrics.svg?branch=master)](https://travis-ci.org/guillaumegenthial/tf_metrics)
 
-Multi-class metrics for tensorflow
+Multi-class metrics for Tensorflow.
 
-## Instal
+## Install
 
 ```
 pip install -r requirements.txt

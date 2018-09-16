@@ -13,11 +13,9 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com",
     packages=find_packages(exclude=["test"]),
-    package_data={'': ['*.json', '*.pl']},
     classifiers=(
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3 :: Only",
     ),
     install_requires=[
         "numpy",
