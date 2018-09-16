@@ -21,7 +21,6 @@ setup(
     ),
     install_requires=[
         "numpy",
-        "pytest",
         "tensorflow>=1.6"
     ]
 )

@@ -1,4 +1,4 @@
-"""General Description"""
+"""General config for tests"""
 
 __author__ = "Guillaume Genthial"
 

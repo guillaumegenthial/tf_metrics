@@ -1,11 +1,11 @@
-"""Tests for precision"""
+"""Tests for f-beta score"""
 
 __author__ = "Guillaume Genthial"
 
 import numpy as np
 import pytest
 import tensorflow as tf
-from sklearn.metrics import precision_score
+from sklearn.metrics import fbeta_score
 from tensorflow.errors import OutOfRangeError
 
 import tf_metrics
@@ -22,12 +22,15 @@ import tf_metrics
 @pytest.mark.parametrize("average", [
     'macro', 'micro', 'weighted'
 ])
-def test_precision(generator_fn, pos_indices, average):
+@pytest.mark.parametrize("beta", [
+    1, 2
+])
+def test_fbeta(generator_fn, pos_indices, average, beta):
     for y_true, y_pred in generator_fn():
-        pr_tf = tf_metrics.precision(
-            y_true, y_pred, 4, pos_indices, average=average)
-        pr_sk = precision_score(
-            y_true, y_pred, pos_indices, average=average)
+        pr_tf = tf_metrics.fbeta(
+            y_true, y_pred, 4, pos_indices, average=average, beta=beta)
+        pr_sk = fbeta_score(
+            y_true, y_pred, beta, pos_indices, average=average)
         with tf.Session() as sess:
             sess.run(tf.local_variables_initializer())
             assert np.allclose(sess.run(pr_tf[1]), pr_sk)
@@ -44,18 +47,21 @@ def test_precision(generator_fn, pos_indices, average):
 @pytest.mark.parametrize("average", [
     'macro', 'micro', 'weighted'
 ])
-def test_precision_op(generator_fn, y_true_all, y_pred_all, pos_indices,
-                      average):
+@pytest.mark.parametrize("beta", [
+    1, 2
+])
+def test_fbeta_op(generator_fn, y_true_all, y_pred_all, pos_indices,
+                  average, beta):
     # Precision on the whole dataset
-    pr_sk = precision_score(
-        y_true_all, y_pred_all, pos_indices, average=average)
+    pr_sk = fbeta_score(
+        y_true_all, y_pred_all, beta, pos_indices, average=average)
 
     # Create Tensorflow graph
     ds = tf.data.Dataset.from_generator(
         generator_fn, (tf.int32, tf.int32), ([None], [None]))
     y_true, y_pred = ds.make_one_shot_iterator().get_next()
-    pr_tf = tf_metrics.precision(y_true, y_pred, 4, pos_indices,
-                                 average=average)
+    pr_tf = tf_metrics.fbeta(y_true, y_pred, 4, pos_indices,
+                             average=average, beta=beta)
 
     with tf.Session() as sess:
         # Initialize and run the update op on each batch
