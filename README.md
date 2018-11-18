@@ -2,13 +2,27 @@
 
 [![Build Status](https://travis-ci.org/guillaumegenthial/tf_metrics.svg?branch=master)](https://travis-ci.org/guillaumegenthial/tf_metrics)
 
-Multi-class metrics for Tensorflow.
+Multi-class metrics for Tensorflow, similar to scikit-learn multi-class metrics.
+
+*Thank you all for making this project live (50-100 clones/day 😎). Contributions welcome!*
 
 ## Install
 
+To add `tf_metrics` to your current python environment, run
+
 ```
+pip install git+https://github.com/guillaumegenthial/tf_metrics.git
+```
+
+For a more advanced use (editable mode, for developers)
+
+```
+git clone https://github.com/guillaumegenthial/tf_metrics.git
+cd tf_metrics
 pip install -r requirements.txt
 ```
+
+If you use a GPU, I recommend downloading the package in editable mode and change the requirement in `setup.py` from `tensorflow` to `tensorflow-gpu`.
 
 
 ## Example
