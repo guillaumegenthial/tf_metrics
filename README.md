@@ -22,9 +22,6 @@ cd tf_metrics
 pip install -r requirements.txt
 ```
 
-If you use a GPU, I recommend downloading the package in editable mode and change the requirement in `setup.py` from `tensorflow` to `tensorflow-gpu`.
-
-
 ## Example
 
 Pre-requisite: understand the general `tf.metrics` API. See for instance [the official guide on custom estimators](https://www.tensorflow.org/guide/custom_estimators#evaluate) or the [official documentation](https://www.tensorflow.org/api_docs/python/tf/metrics/accuracy).
