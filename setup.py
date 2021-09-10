@@ -14,8 +14,8 @@ def has_gpu():
         return False
 
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+with open("README.md", "rb") as fh:
+    long_description = fh.read().decode("utf-8")
 
 
 install_requires = ["numpy"]
